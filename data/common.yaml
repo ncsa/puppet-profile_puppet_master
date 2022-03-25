@@ -9,7 +9,7 @@ profile_puppet_master::firewall_allow_from:
 profile_puppet_master::tidy::dirlist:
   "/opt/puppetlabs/server/data/puppetserver/reports":
     age: "1d"
-    size: "1g"
+    max_files: 50000
     recurse: true
     rmdirs: true
     type: "mtime"
