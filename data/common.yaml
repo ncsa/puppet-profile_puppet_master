@@ -6,3 +6,10 @@ profile_puppet_master::firewall_allow_from:
   - "10.142.0.0/16"
   - "141.142.0.0/16"
   - "172.24.0.0/13"
+profile_puppet_master::tidy::dirlist:
+  "/opt/puppetlabs/server/data/puppetserver/reports":
+    age: "1d"
+    size: "1g"
+    recurse: true
+    rmdirs: true
+    type: "mtime"

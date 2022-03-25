@@ -20,6 +20,8 @@ class profile_puppet_master (
 
 ) {
 
+  include ::profile_puppet_master::tidy
+
   # Remove setuid/setgid from key files
   $file_remove_setuid_defaults = {
     mode    => 'ug-s',
