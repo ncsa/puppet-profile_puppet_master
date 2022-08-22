@@ -4,8 +4,12 @@
 #   - github.com/ncsa/puppet-profile_docker
 #   - puppetlabs/firewall
 #
+# @param crons
+#   Hash of cron resource data (defaults to a single cron for cleaning
+#   Puppet report data).
+#
 # @param files_remove_setuid
-#   Hash of file resource paramters that need setuid removed from them
+#   Hash of file resource parameters that need setuid removed from them
 #
 # @param firewall_allow_from
 #     Array[ String, 1 ]
@@ -15,12 +19,19 @@
 # @example
 #   include profile_puppet_master
 class profile_puppet_master (
+
+  Hash               $crons,
   Hash               $files_remove_setuid,
   Array[ String, 1 ] $firewall_allow_from,
 
 ) {
 
-  include ::profile_puppet_master::tidy
+  # Manage crons
+  $crons.each | $cron_name, $cron_data | {
+    cron { $cron_name:
+      * => $cron_data,
+    }
+  }
 
   # Remove setuid/setgid from key files
   $file_remove_setuid_defaults = {

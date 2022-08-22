@@ -28,14 +28,22 @@ include profile_puppet_master
 
 The following parameters are available in the `profile_puppet_master` class:
 
+* [`crons`](#crons)
 * [`files_remove_setuid`](#files_remove_setuid)
 * [`firewall_allow_from`](#firewall_allow_from)
+
+##### <a name="crons"></a>`crons`
+
+Data type: `Hash`
+
+Hash of cron resource data (defaults to a single cron for cleaning
+Puppet report data).
 
 ##### <a name="files_remove_setuid"></a>`files_remove_setuid`
 
 Data type: `Hash`
 
-Hash of file resource paramters that need setuid removed from them
+Hash of file resource parameters that need setuid removed from them
 
 ##### <a name="firewall_allow_from"></a>`firewall_allow_from`
 

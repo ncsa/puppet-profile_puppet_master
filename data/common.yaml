@@ -1,4 +1,15 @@
 ---
+profile_puppet_master::crons:
+  "clean_opt_puppetlabs_server_data_puppetserver_reports":
+    command: "/bin/find /opt/puppetlabs/server/data/puppetserver/reports -type f -not -newerct '2 days ago' -delete"
+    environment:
+      - "SHELL=/bin/sh"
+    hour: "1"
+    minute: 25
+    month: "*"
+    monthday: "*"
+    weekday: "*"
+    user: "root"
 profile_puppet_master::files_remove_setuid:
   "/bin/fusermount": {}
   "/bin/fusermount3": {}
@@ -6,10 +17,3 @@ profile_puppet_master::firewall_allow_from:
   - "10.142.0.0/16"
   - "141.142.0.0/16"
   - "172.24.0.0/13"
-profile_puppet_master::tidy::dirlist:
-  "/opt/puppetlabs/server/data/puppetserver/reports":
-    age: "1d"
-    max_files: 50000
-    recurse: true
-    rmdirs: true
-    type: "mtime"
