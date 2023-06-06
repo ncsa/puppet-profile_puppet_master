@@ -19,12 +19,11 @@
 # @example
 #   include profile_puppet_master
 class profile_puppet_master (
-
   Hash               $crons,
   Hash               $files_remove_setuid,
-  Array[ String, 1 ] $firewall_allow_from,
-
+  Array[String, 1] $firewall_allow_from,
 ) {
+  include profile_puppet_master::backup
 
   # Manage crons
   $crons.each | $cron_name, $cron_data | {
@@ -48,5 +47,4 @@ class profile_puppet_master (
       source => $cidr,
     }
   }
-
 }
