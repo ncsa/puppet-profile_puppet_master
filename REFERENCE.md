@@ -7,6 +7,7 @@
 ### Classes
 
 * [`profile_puppet_master`](#profile_puppet_master): Configure host settings on a puppet master
+* [`profile_puppet_master::backup`](#profile_puppet_masterbackup): Configure Pupppet server backups
 
 ## Classes
 
@@ -47,9 +48,21 @@ Hash of file resource parameters that need setuid removed from them
 
 ##### <a name="firewall_allow_from"></a>`firewall_allow_from`
 
-Data type: `Array[ String, 1 ]`
+Data type: `Array[String, 1]`
 
 Array[ String, 1 ]
 Open the firewall for all "sources" in this list
 Format for sources is any valid "source" string in the puppet/firewall module
+
+### <a name="profile_puppet_masterbackup"></a>`profile_puppet_master::backup`
+
+Configure Pupppet server backups
+
+#### Examples
+
+##### 
+
+```puppet
+include profile_puppet_master::backup
+```
 
