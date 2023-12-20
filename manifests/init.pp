@@ -24,6 +24,7 @@ class profile_puppet_master (
   Array[String, 1] $firewall_allow_from,
 ) {
   include profile_puppet_master::backup
+  include profile_puppet_master::monitoring
 
   # Manage crons
   $crons.each | $cron_name, $cron_data | {

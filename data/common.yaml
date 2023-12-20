@@ -17,3 +17,6 @@ profile_puppet_master::firewall_allow_from:
   - "10.142.0.0/16"
   - "141.142.0.0/16"
   - "172.24.0.0/13"
+profile_puppet_master::monitoring::enable: true
+profile_puppet_master::monitoring::telegraf_sslcert_check_file: "/etc/telegraf/telegraf.d/sslcert-check.conf"
+profile_puppet_master::monitoring::telegraf_website_check_file: "/etc/telegraf/telegraf.d/website-check.conf"
