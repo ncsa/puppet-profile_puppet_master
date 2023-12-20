@@ -7,7 +7,8 @@
 ### Classes
 
 * [`profile_puppet_master`](#profile_puppet_master): Configure host settings on a puppet master
-* [`profile_puppet_master::backup`](#profile_puppet_masterbackup): Configure Pupppet server backups
+* [`profile_puppet_master::backup`](#profile_puppet_master--backup): Configure Pupppet server backups
+* [`profile_puppet_master::monitoring`](#profile_puppet_master--monitoring): Register monitoring for the Puppet server
 
 ## Classes
 
@@ -29,24 +30,24 @@ include profile_puppet_master
 
 The following parameters are available in the `profile_puppet_master` class:
 
-* [`crons`](#crons)
-* [`files_remove_setuid`](#files_remove_setuid)
-* [`firewall_allow_from`](#firewall_allow_from)
+* [`crons`](#-profile_puppet_master--crons)
+* [`files_remove_setuid`](#-profile_puppet_master--files_remove_setuid)
+* [`firewall_allow_from`](#-profile_puppet_master--firewall_allow_from)
 
-##### <a name="crons"></a>`crons`
+##### <a name="-profile_puppet_master--crons"></a>`crons`
 
 Data type: `Hash`
 
 Hash of cron resource data (defaults to a single cron for cleaning
 Puppet report data).
 
-##### <a name="files_remove_setuid"></a>`files_remove_setuid`
+##### <a name="-profile_puppet_master--files_remove_setuid"></a>`files_remove_setuid`
 
 Data type: `Hash`
 
 Hash of file resource parameters that need setuid removed from them
 
-##### <a name="firewall_allow_from"></a>`firewall_allow_from`
+##### <a name="-profile_puppet_master--firewall_allow_from"></a>`firewall_allow_from`
 
 Data type: `Array[String, 1]`
 
@@ -54,7 +55,7 @@ Array[ String, 1 ]
 Open the firewall for all "sources" in this list
 Format for sources is any valid "source" string in the puppet/firewall module
 
-### <a name="profile_puppet_masterbackup"></a>`profile_puppet_master::backup`
+### <a name="profile_puppet_master--backup"></a>`profile_puppet_master::backup`
 
 Configure Pupppet server backups
 
@@ -65,4 +66,42 @@ Configure Pupppet server backups
 ```puppet
 include profile_puppet_master::backup
 ```
+
+### <a name="profile_puppet_master--monitoring"></a>`profile_puppet_master::monitoring`
+
+Register monitoring for the Puppet server
+
+#### Examples
+
+##### 
+
+```puppet
+include profile_puppet_master::monitoring
+```
+
+#### Parameters
+
+The following parameters are available in the `profile_puppet_master::monitoring` class:
+
+* [`enable`](#-profile_puppet_master--monitoring--enable)
+* [`telegraf_sslcert_check_file`](#-profile_puppet_master--monitoring--telegraf_sslcert_check_file)
+* [`telegraf_website_check_file`](#-profile_puppet_master--monitoring--telegraf_website_check_file)
+
+##### <a name="-profile_puppet_master--monitoring--enable"></a>`enable`
+
+Data type: `Boolean`
+
+Boolean of whether monitoring is enabled
+
+##### <a name="-profile_puppet_master--monitoring--telegraf_sslcert_check_file"></a>`telegraf_sslcert_check_file`
+
+Data type: `String`
+
+Full path to telegraf sslcert check file
+
+##### <a name="-profile_puppet_master--monitoring--telegraf_website_check_file"></a>`telegraf_website_check_file`
+
+Data type: `String`
+
+Full path to telegraf website check file
 
